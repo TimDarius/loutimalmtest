@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{698173f6-e9d8-49da-bf47-80e1f15ebc00}" IsUserDefined="1">
           <labels>
@@ -14,13 +14,13 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{d94e1f1d-cdee-49fe-86ca-4ffb1aeea9a2}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{d94e1f1d-cdee-49fe-86ca-4ffb1aeea9a2}" name="tab_general" columns="11">
                   <labels>
                     <label description="General" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{d0abc374-6f67-4502-b386-3fdc819d58e4}">
+                      <cell id="{d0abc374-6f67-4502-b386-3fdc819d58e4}" colspan="2">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
@@ -28,11 +28,43 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{d97652f0-edb1-44d2-928a-22426b1d511e}">
+                      <cell id="{d97652f0-edb1-44d2-928a-22426b1d511e}" colspan="1" rowspan="1">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell id="{fb7828b3-90a2-4a00-a96a-c0972f2fc7c6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested Days Off" languagecode="1033" />
+                        </labels>
+                        <control id="user9_requesteddaysoff" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="user9_requesteddaysoff" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2ac06670-721d-4b7e-9689-e571c13d92ee}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Start Date" languagecode="1033" />
+                        </labels>
+                        <control id="user9_startdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_startdate" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{6d24f478-022d-49ec-9442-1230bf8f03ab}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{20f4c775-7cc6-4229-ae01-d8470289ccd7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="End Date" languagecode="1033" />
+                        </labels>
+                        <control id="user9_enddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_enddate" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{1a9c616a-fc11-46d9-a7df-071ee8f48e2f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -42,6 +74,66 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{53a78428-a292-4668-a3e6-13156421482b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{f1a3970c-6a7d-4124-abd5-27435e48921d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e84332da-a1d5-4111-8f57-7e51383b3fc0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{063b8b3d-a42b-4111-aea2-fae4eadc52c2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{4f8654c0-92dc-4626-b219-4c7aa8bb29c4}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ac6f8edc-a937-415b-90be-bd6a82ab8607}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e2ea0a2c-9a11-4b98-8078-85d743805a0f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4465e925-6b24-4cbb-acbf-3b6df5dd9401}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <formLibraries>
+        <Library name="user9_timeoffrequest.js" libraryUniqueId="{1b7d2cfe-94cf-488f-8e6e-20ad73205827}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="user9_startdate">
+          <Handlers>
+            <Handler functionName="CalculateTimeOff" libraryName="user9_timeoffrequest.js" handlerUniqueId="{dfd12615-5359-4bca-acc3-c27f1dee758b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="user9_enddate">
+          <Handlers>
+            <Handler functionName="CalculateTimeOff" libraryName="user9_timeoffrequest.js" handlerUniqueId="{f852efb8-dbf5-4f96-ac45-dd6d812e32cd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

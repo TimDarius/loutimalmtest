@@ -80,6 +80,7 @@
     <RootComponents>
       <RootComponent type="1" schemaName="user9_timeoffrequest" behavior="0" />
       <RootComponent type="300" schemaName="user9_requesttimeoff_4357e" behavior="0" />
+      <RootComponent type="61" schemaName="user9_timeoffrequest.js" behavior="0" />
       <RootComponent type="62" schemaName="user9_TimeOffRequest" behavior="0" />
       <RootComponent type="80" schemaName="user9_TimeOffRequest" behavior="0" />
     </RootComponents>
