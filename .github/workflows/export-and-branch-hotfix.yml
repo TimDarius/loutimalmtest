@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       # Change this value
+      hotfix_branch_name:
+        description: 'hotfix branch name'
+        required: true
+        default: Hotfix#.#
       hotfix_environment_url:
         description: 'hotfix environment url'
         required: true
@@ -36,7 +40,7 @@ env:
   TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
 
 jobs:
-  export-from-dev:
+  export-from-hotfix:
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
@@ -79,5 +83,6 @@ jobs:
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+        branch-name: ${{ github.event.inputs.hotfix_branch_name }}
         allow-empty-commit: true
         
