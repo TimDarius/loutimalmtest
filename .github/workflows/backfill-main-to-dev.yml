@@ -77,8 +77,7 @@ jobs:
         name: unmanagedSolutions
         path: ${{ github.event.inputs.solution_exported_folder}}/
 
-
-  pack-solution-as-unmanaged:
+  pack-solution-from-repo-as-unmanaged:
     needs: [ export-from-dev ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
@@ -106,7 +105,7 @@ jobs:
     - name: Fetch the ready to backfill solution from GH artifact store
       uses: actions/download-artifact@v2
       with:
-        name: managedSolutions
+        name: unmanagedSolutions
         path: ${{ inputs.solution_release_folder}}
 
     - name: Import solution as unmanaged to dev env
