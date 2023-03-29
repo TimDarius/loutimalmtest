@@ -48,7 +48,7 @@
                         </labels>
                         <control id="user9_startdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_startdate" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{6d24f478-022d-49ec-9442-1230bf8f03ab}">
+                      <cell locklevel="0" id="{53d1400e-07f7-4a98-849b-619c1ef99672}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -61,7 +61,31 @@
                         </labels>
                         <control id="user9_enddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_enddate" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{1a9c616a-fc11-46d9-a7df-071ee8f48e2f}">
+                      <cell locklevel="0" id="{4db1e561-e8c7-4186-9387-2655b59d7916}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cab29ec9-76cd-4fed-8495-f447e620c295}" locklevel="0" colspan="2" rowspan="5" auto="true">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="user9_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="user9_description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{f54538a1-b015-48de-85f0-40d1e7ccb7b7}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{35eb73d8-3bf5-4218-89c1-4f14fe0e80de}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
