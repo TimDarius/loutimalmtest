@@ -53,7 +53,7 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{github.event.inputs.hotfix_environment_url}} # ${{env.ENVIRONMENT_URL}}
+        environment-url: ${{github.event.inputs.hotfix_environment_url}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
@@ -61,7 +61,7 @@ jobs:
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{github.event.inputs.hotfix_environment_url}} # ${{env.ENVIRONMENT_URL}}
+        environment-url: ${{github.event.inputs.hotfix_environment_url}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
