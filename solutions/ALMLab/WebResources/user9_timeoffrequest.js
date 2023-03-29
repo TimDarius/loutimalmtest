@@ -8,7 +8,7 @@
     var dayAsMilliseconds = 86400000;
     var numDaysOff = Math.ceil((endDate.getValue().getTime() - startDate.getValue().getTime())
         / dayAsMilliseconds);
-    /* the fix: user9_requesteddaysoff */
-    var requestedDaysOff = formContext.getAttribute("badFieldReference");
+    /* the fix: badFieldReference */
+    var requestedDaysOff = formContext.getAttribute("user9_requesteddaysoff");
     requestedDaysOff.setValue(numDaysOff);
 }
