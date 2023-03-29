@@ -10,10 +10,6 @@ on:
         description: 'hotfix branch name'
         required: true
         default: Hotfix#.#
-      hotfix_environment_url:
-        description: 'hotfix environment url'
-        required: true
-        default: https://loutimhotfix.crm9.dynamics.com
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
         required: true
@@ -35,6 +31,7 @@ permissions:
   contents: write
 env:
 #edit your values here
+  ENVIRONMENT_URL: 'https://loutimhotfix.crm9.dynamics.com'
   CLIENT_ID: '8e4bb30c-79c5-4a03-a11d-184322a0a793'
   TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
 
@@ -53,7 +50,7 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{github.event.inputs.hotfix_environment_url}}
+        environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
@@ -61,18 +58,18 @@ jobs:
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{github.event.inputs.hotfix_environment_url}}
+        environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder }}/${{ github.event.inputs.solution_name }}.zip
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: ${{github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        solution-folder: ${{github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-type: 'Unmanaged'
         overwrite-files: true
 
