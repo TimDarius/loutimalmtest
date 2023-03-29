@@ -1,0 +1,121 @@
+name: backfill-main-to-dev
+# export solution from dev as unmanaged (using PowerPlatform Actions)
+# upload the exported solution as a GitHub artifact
+# pack solution from repo as unmanaged (using PowerPlatform Actions)
+# upload the repo solution as a GitHub artifact and deploy to the Dev environment
+
+on:
+  workflow_dispatch:
+    inputs: 
+      # Change this value
+      solution_name:
+        description: 'The solution name.'
+        type: string
+        default: ALMLab       
+       #Do Not change these values
+      solution_exported_folder:
+        description: 'folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+      solution_outbound_folder:
+        description: 'staging the unpacked solution folder before check-in *do not change*'
+        type: string
+        default: out/solutions/
+      solution_source_folder: 
+       description: 'folder name to be created and checked in *do not change*'
+       type: string
+       default: solutions/
+      solution_release_folder:
+       description: 'folder where the released binaries are going to be hosted *do not change*'
+       type: string
+       default: out/release
+
+
+permissions:
+  contents: write
+
+env:
+#edit your values here
+  ENVIRONMENT_URL: 'https://loutimdev.crm9.dynamics.com'
+  CLIENT_ID: '8e4bb30c-79c5-4a03-a11d-184322a0a793'
+  TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
+
+jobs:
+  export-from-dev:
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+
+
+    - name: export-solution action
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        solution-name: ${{ github.event.inputs.solution_name }}
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_dev.zip
+
+    - name: Upload the exported unmanaged solution to GH artifact store
+      uses: actions/upload-artifact@v2
+      with:
+        name: unmanagedSolutions
+        path: ${{ github.event.inputs.solution_exported_folder}}/
+
+
+  pack-solution-as-unmanaged:
+    needs: [ export-from-dev ]
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: Pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}_repo.zip
+        solution-type: Unmanaged
+
+    - name: Upload the ready to ship solution to GH artifact store
+      uses: actions/upload-artifact@v2
+      with:
+        name: unmanagedSolutions
+        path: ${{ inputs.solution_outbound_folder}}/
+
+    - name: Fetch the ready to backfill solution from GH artifact store
+      uses: actions/download-artifact@v2
+      with:
+        name: managedSolutions
+        path: ${{ inputs.solution_release_folder}}
+
+    - name: Import solution as unmanaged to dev env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{inputs.CLIENT_ID}}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{inputs.TENANT_ID}}
+        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_repo.zip
+        force-overwrite: true
+        publish-changes: true
