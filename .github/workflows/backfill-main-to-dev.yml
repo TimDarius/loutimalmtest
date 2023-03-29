@@ -102,8 +102,8 @@ jobs:
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
-        solution-file: ${{ env.solution_release_folder}}/${{ inputs.solution_name }}_repo.zip
+        solution-file: ${{ env.solution_release_folder }}/${{ inputs.solution_name }}_repo.zip
         force-overwrite: true
         publish-changes: true
