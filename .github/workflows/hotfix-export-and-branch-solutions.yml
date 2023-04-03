@@ -1,0 +1,108 @@
+name: hotfix-export-and-branch-solutions
+# Export solutions from Hotfix environment
+#  unpack it and prepare, commit and push to two git branches with the changes
+
+on:
+  workflow_dispatch:
+    inputs:
+      # Change this value
+      hotfix_env_url:
+        description: 'Hotfix Environment Url'
+        required: true
+        default: https://loutimhotfix.crm9.dynamics.com
+      hotfix_version_number:
+        description: 'Hotfix release version, e.g. 2.1'
+        required: true
+        default: '#.#'
+      complete_solution_name:
+        description: 'Unique name of the complete Power Platform solution for which this Hotfix was made'
+        required: true
+        default: ALMLab
+      solution_name:
+        description: 'Unique name of the partial Power Platform solution containing only changed components for this Hotfix'
+        required: true
+        default: ALMLabHotfix21
+permissions:
+  contents: write
+env:
+#edit your values here
+#ENVIRONMENT_URL: 'https://loutimhotfix.crm9.dynamics.com'
+  CLIENT_ID: '8e4bb30c-79c5-4a03-a11d-184322a0a793'
+  TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
+  solution_exported_folder: out/exported/
+  solution_folder: out/solutions/
+  solution_target_folder: solutions/
+
+jobs:
+  export-from-hotfix:
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+   
+    - name: export-complete-solution action
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ github.event.inputs.hotfix_env_url }} #${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        solution-name: ${{ github.event.inputs.complete_solution_name }}
+        solution-output-file: ${{ env.solution_exported_folder}}/complete/${{ github.event.inputs.complete_solution_name }}.zip
+
+    - name: export-hotfix-solution action
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ github.event.inputs.hotfix_env_url }} #${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        solution-name: ${{ github.event.inputs.hotfix_solution_name }}
+        solution-output-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
+
+    - name: unpack-complete-solution action
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      with:
+        solution-file: ${{ env.solution_exported_folder}}/complete/${{ github.event.inputs.complete_solution_name }}.zip
+        solution-folder: ${{ env.solution_folder}}/complete/${{ github.event.inputs.complete_solution_name }}
+        solution-type: 'Unmanaged'
+        overwrite-files: true
+
+    - name: unpack-hotfix-solution action
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      with:
+        solution-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
+        solution-folder: ${{ env.solution_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
+        solution-type: 'Unmanaged'
+        overwrite-files: true
+
+    - name: branch-complete-solution, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@v0
+      with:
+        solution-folder: ${{ env.solution_folder}}/complete/${{ github.event.inputs.complete_solution_name }}
+        solution-target-folder: ${{ env.solution_target_folder}}/${{ github.event.inputs.complete_solution_name }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        branch-name: ${{ github.event.inputs.complete_solution_name }}${{github.event.inputs.hotfix_version_number}}Complete
+        allow-empty-commit: true
+        
+    - name: branch-hotfix-solution, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@v0
+      with:
+        solution-folder: ${{ env.solution_folder }}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
+        solution-target-folder: ${{ env.solution_target_folder}}/${{ github.event.inputs.hotfix_solution_name }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        branch-name: ${{ github.event.inputs.complete_solution_name }}${{github.event.inputs.hotfix_version_number}}Components
+        allow-empty-commit: true
