@@ -8,7 +8,7 @@
 
 ### Environment Variables
 
-| Name    | Description                 |    |
+| Name    | Description                 | 
 |---------|:---------------------------:|
 | CLIENT_ID | The Client ID from the App Registration for Power Platform |
 | TENANT_ID | The Tenant ID for the Tenant hosting the Power Platform solution |
