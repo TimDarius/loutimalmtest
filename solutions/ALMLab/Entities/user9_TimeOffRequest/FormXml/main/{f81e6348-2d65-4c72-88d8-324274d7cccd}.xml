@@ -28,14 +28,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{62f4c9e3-cfb9-4cb2-9cbe-68e2c2e8e614}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Description" languagecode="1033" />
-                        </labels>
-                        <control id="user9_description" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="user9_description" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{d97652f0-edb1-44d2-928a-22426b1d511e}">
                         <labels>
                           <label description="Owner" languagecode="1033" />
