@@ -13,6 +13,8 @@
 | CLIENT_ID | The Client ID from the App Registration for Power Platform |
 | TENANT_ID | The Tenant ID for the Tenant hosting the Power Platform solution |
 | ENVIRONMENT_URL | The URL for the Power Platform environment |
+| BUILD_ENVIRONMENT_URL | The URL for the Power Platform Build environment |
+| PRODUCTION_ENVIRONMENT_URL | The URL for the Power Platform Production environmnet | 
 | PowerPlatformSPN | The Secret for the Client ID that has been registered for Power Platform. This is stored in secrets on GitHub |
 | GITHUB_TOKEN | 
 
@@ -44,8 +46,12 @@ Steps:
 ### hotfix-export-and-branch-solutions.yml
 
 ### release-action-call.yml
+Trigger action that is initiated when a new release is created in GitHub. This action will then call *release-solution-to-prod-with-inputs* to handle importing a managed solution from the Main branch into the production Power Platform environment.
 
 ### release-solution-to-prod-with-inputs.yml
+
+
+
 
 ## Solution
 
