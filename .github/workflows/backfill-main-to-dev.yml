@@ -31,24 +31,24 @@ env:
   solution_release_folder: out/release
 
 jobs:
-  export-sln-from-dev:
-    runs-on: windows-latest
-    # or you can say runs-on: ubuntu-latest
-    env:
-      RUNNER_DEBUG: 1
+#  export-sln-from-dev:
+#    runs-on: windows-latest
+#    # or you can say runs-on: ubuntu-latest
+#    env:
+#      RUNNER_DEBUG: 1
 
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        lfs: true
+#    steps:
+#    - uses: actions/checkout@v2
+#      with:
+#        lfs: true
 
-    - name: who-am-i action
-      uses: microsoft/powerplatform-actions/who-am-i@v0
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
+#    - name: who-am-i action
+#      uses: microsoft/powerplatform-actions/who-am-i@v0
+#      with:
+#        environment-url: ${{env.ENVIRONMENT_URL}}
+#        app-id: ${{env.CLIENT_ID}}
+#        client-secret: ${{ secrets.PowerPlatformSPN }}
+#        tenant-id: ${{env.TENANT_ID}}
 
 #    - name: export-solution action
 #      uses: microsoft/powerplatform-actions/export-solution@v0
@@ -67,7 +67,7 @@ jobs:
 #        path: ${{ env.solution_exported_folder }}/
 
   pack-sln-from-repo-as-unmanaged:
-    needs: [ export-sln-from-dev ]
+#    needs: [ export-sln-from-dev ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
