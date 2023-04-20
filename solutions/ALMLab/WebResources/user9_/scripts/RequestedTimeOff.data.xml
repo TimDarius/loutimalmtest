@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{ee1cf739-a2df-ed11-a7c5-001dd8041188}</WebResourceId>
+  <Name>user9_/scripts/RequestedTimeOff</Name>
+  <DisplayName>/scripts/RequestedTimeOff</DisplayName>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.0.1</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/user9_scriptsRequestedTimeOffEE1CF739-A2DF-ED11-A7C5-001DD8041188</FileName>
+</WebResource>

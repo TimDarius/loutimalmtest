@@ -79,6 +79,7 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="user9_timeoffrequest" behavior="0" />
+      <RootComponent type="61" schemaName="user9_/scripts/RequestedTimeOff" behavior="0" />
       <RootComponent type="62" schemaName="user9_TimeOffRequest" behavior="0" />
       <RootComponent type="80" schemaName="user9_TimeOffRequest" behavior="0" />
     </RootComponents>

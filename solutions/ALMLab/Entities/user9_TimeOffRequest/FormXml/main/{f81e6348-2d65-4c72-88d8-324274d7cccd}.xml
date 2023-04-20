@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{698173f6-e9d8-49da-bf47-80e1f15ebc00}" IsUserDefined="1">
           <labels>
@@ -35,6 +35,30 @@
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{3e871db5-8d71-4467-9005-9fc0cda2768f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Start Date" languagecode="1033" />
+                        </labels>
+                        <control id="user9_startdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_startdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54553e8e-e2eb-4ded-9f2f-0a314e6e68ce}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="End Date" languagecode="1033" />
+                        </labels>
+                        <control id="user9_enddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="user9_enddate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{37183c8c-3a81-4550-a55f-9a767233342a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Requested Days Off" languagecode="1033" />
+                        </labels>
+                        <control id="user9_requesteddaysoff" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="user9_requesteddaysoff" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -42,6 +66,66 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{78854e9b-c692-4d83-9462-19f9e0076ea1}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{20e0b2b5-7077-42d6-b1d4-4fe4ca4c6714}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ea2c63d1-0f43-46e3-8fe5-21abc95fc4b2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{60bca065-01e9-4954-8ba0-74dc267228bd}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{ca43c537-64bf-497a-8088-e6ba4440d1b9}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{26165765-6c1b-4cb0-bc4b-72b8d494734f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{693b4f15-761c-4155-8c8c-3809760115d2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0349face-7643-4019-bda1-2aedb473330f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <formLibraries>
+        <Library name="user9_/scripts/RequestedTimeOff" libraryUniqueId="{d3f5150c-54f4-437a-922f-7dba94f62296}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="user9_startdate">
+          <Handlers>
+            <Handler functionName="CalculateTimeOff" libraryName="user9_/scripts/RequestedTimeOff" handlerUniqueId="{ff11b779-ed7b-4c4a-be7a-f1c8aa3c082f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="user9_enddate">
+          <Handlers>
+            <Handler functionName="CalculateTimeOff" libraryName="user9_/scripts/RequestedTimeOff" handlerUniqueId="{e78eb3db-bd82-42ed-9602-3ac18801bc0a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
