@@ -63,15 +63,15 @@ jobs:
         solution-name: ${{ github.event.inputs.complete_solution_name }}
         solution-output-file: ${{ env.solution_exported_folder}}/complete/${{ github.event.inputs.complete_solution_name }}.zip
 
-    - name: export-hotfix-solution action
-      uses: microsoft/powerplatform-actions/export-solution@v0
-      with:
-        environment-url: ${{ github.event.inputs.hotfix_env_url }} #${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{env.TENANT_ID}}
-        solution-name: ${{ github.event.inputs.hotfix_solution_name }}
-        solution-output-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
+#    - name: export-hotfix-solution action
+#      uses: microsoft/powerplatform-actions/export-solution@v0
+#      with:
+#        environment-url: ${{ github.event.inputs.hotfix_env_url }} #${{env.ENVIRONMENT_URL}}
+#        app-id: ${{env.CLIENT_ID}}
+#        client-secret: ${{ secrets.PowerPlatformSPN }}
+#        tenant-id: ${{env.TENANT_ID}}
+#        solution-name: ${{ github.event.inputs.hotfix_solution_name }}
+#        solution-output-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
 
     - name: unpack-complete-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
@@ -81,13 +81,13 @@ jobs:
         solution-type: 'Unmanaged'
         overwrite-files: true
 
-    - name: unpack-hotfix-solution action
-      uses: microsoft/powerplatform-actions/unpack-solution@v0
-      with:
-        solution-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
-        solution-folder: ${{ env.solution_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
-        solution-type: 'Unmanaged'
-        overwrite-files: true
+#    - name: unpack-hotfix-solution action
+#      uses: microsoft/powerplatform-actions/unpack-solution@v0
+#      with:
+#        solution-file: ${{ env.solution_exported_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}.zip
+#        solution-folder: ${{ env.solution_folder}}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
+#        solution-type: 'Unmanaged'
+#        overwrite-files: true
 
     - name: branch-complete-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
@@ -98,11 +98,11 @@ jobs:
         branch-name: ${{ github.event.inputs.complete_solution_name }}${{github.event.inputs.hotfix_version_number}}Complete
         allow-empty-commit: true
         
-    - name: branch-hotfix-solution, prepare it for a PullRequest
-      uses: microsoft/powerplatform-actions/branch-solution@v0
-      with:
-        solution-folder: ${{ env.solution_folder }}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
-        solution-target-folder: ${{ env.solution_target_folder}}/${{ github.event.inputs.hotfix_solution_name }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        branch-name: ${{ github.event.inputs.complete_solution_name }}${{github.event.inputs.hotfix_version_number}}Components
-        allow-empty-commit: true
+#    - name: branch-hotfix-solution, prepare it for a PullRequest
+#      uses: microsoft/powerplatform-actions/branch-solution@v0
+#      with:
+#        solution-folder: ${{ env.solution_folder }}/hotfix/${{ github.event.inputs.hotfix_solution_name }}
+#        solution-target-folder: ${{ env.solution_target_folder}}/${{ github.event.inputs.hotfix_solution_name }}
+#        repo-token: ${{ secrets.GITHUB_TOKEN }}
+#        branch-name: ${{ github.event.inputs.complete_solution_name }}${{github.event.inputs.hotfix_version_number}}Components
+#        allow-empty-commit: true
