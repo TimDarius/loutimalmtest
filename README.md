@@ -20,7 +20,15 @@ solution_exported_folder
 |---------------|:--------:|-----------:|-------------------------------:|
 | solution_name | Yes      | ALMLab     | name of the solution to worked on from Power Platform |
 | solution_exported_folder | Yes      | out/exported/     | folder name for staging the exported solution *do not change* |
+| solution_folder | Yes | out/solutions/ | staging the unpacked solution folder before check-in *do not change* |
+| solution_target_folder | Yes | solutions/ | folder name to be created and checked in *do not change*|
 
+Steps:
+1. actions/checkout@v2
+2. who-am-i action
+3. export-solution action
+4. unpack-solultion action
+5. branch-solution, prepare it, for Pull Request
 
 
 ### hotfix-export-and-branch-solutions.yml
