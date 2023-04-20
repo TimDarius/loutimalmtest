@@ -6,6 +6,14 @@
 
 ## GitHub Actions
 
+### Environment Variables
+
+| Name    | Description                 |    |
+|---------|:---------------------------:|
+| CLIENT_ID | The Client ID from the App Registration for Power Platform |
+| TENANT_ID | The Tenant ID for the Tenant hosting the Power Platform solution |
+| ENVIRONMENT_URL | The URL for the Power Platform environment |
+
 ### backfill-main-to-dev.yml
 
 ### export-and-branch.yml
