@@ -18,10 +18,10 @@ on:
         description: 'Unique name of the complete Power Platform solution for which this Hotfix was made'
         required: true
         default: ALMLab
-      hotfix_solution_name:
-        description: 'Unique name of the partial Power Platform solution containing only changed components for this Hotfix'
-        required: true
-        default: ALMLabHotfix21
+#      hotfix_solution_name:
+#        description: 'Unique name of the partial Power Platform solution containing only changed components for this Hotfix'
+#        required: true
+#        default: ALMLabHotfix21
 permissions:
   contents: write
 env:
