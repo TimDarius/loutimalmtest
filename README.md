@@ -6,13 +6,15 @@
 
 ## GitHub Actions
 
-### Environment Variables
+### Environment Variables / Secrets
 
 | Name    | Description                 | 
 |---------|:---------------------------:|
 | CLIENT_ID | The Client ID from the App Registration for Power Platform |
 | TENANT_ID | The Tenant ID for the Tenant hosting the Power Platform solution |
 | ENVIRONMENT_URL | The URL for the Power Platform environment |
+| PowerPlatformSPN | The Secret for the Client ID that has been registered for Power Platform. This is stored in secrets on GitHub |
+| GITHUB_TOKEN | 
 
 ### backfill-main-to-dev.yml
 
