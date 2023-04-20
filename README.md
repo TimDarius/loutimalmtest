@@ -28,6 +28,7 @@ The following Power Platforms are used as part of this project.
 | GITHUB_TOKEN | 
 
 ### backfill-main-to-dev.yml
+Export solution from DEV as unmanaged, upload export solution to GitHub artifact store, pack solution as unmanaged and deploy to dev/hotfix
 
 ### export-and-branch.yml
 Export unmanaged solution from environmnet , unpack the solution, prepare for check-in, commit and create branch.
@@ -58,7 +59,20 @@ Steps:
 Trigger action that is initiated when a new release is created in GitHub. This action will then call *release-solution-to-prod-with-inputs* to handle importing a managed solution from the Main branch into the production Power Platform environment.
 
 ### release-solution-to-prod-with-inputs.yml
+This action is called from *release-action-call* when a new release is created in GitHub. Once a new release create this action will use the Main branch to pack the solution and import into production as a managed solution.
 
+Inputs
+
+Steps:
+*convert-to-managed*
+1. actions/checkout@v2
+2. Pack solution
+3. Import solution as unmanaged to build env
+4. Export solution as managed
+5. Upload the ready to ship solution to GitHub artifact store
+*release-to-staging*
+1. actions/checkout@v2
+2. Fetch the ready to ship solution from GitHub artifact store
 
 
 
