@@ -18,6 +18,7 @@ permissions:
   contents: write
 env:
 #edit your values here
+  # ENVIRONMENT_URL should not be needed, testing before removing
   ENVIRONMENT_URL: 'https://loutimdev.crm9.dynamics.com'
   CLIENT_ID: '8e4bb30c-79c5-4a03-a11d-184322a0a793'
   TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
@@ -37,7 +38,7 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
+        environment-url: ${{inputs.destination_environment_url}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
