@@ -20,6 +20,7 @@ env:
 #edit your values here
   # ENVIRONMENT_URL should not be needed, testing before removing
   ENVIRONMENT_URL: 'https://loutimdev.crm9.dynamics.com'
+  PP_BUILD_URL: 'https://loutimbuild.crm9.dynamics.com'
   CLIENT_ID: '8e4bb30c-79c5-4a03-a11d-184322a0a793'
   TENANT_ID: 'c0daba30-fba7-4669-a2fc-36142728b7e9'
   SOLUTION_FOLDER: out/solutions/
@@ -49,10 +50,32 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ env.SOLUTION_SOURCE_FOLDER}}/${{ inputs.solution_name }}
-        solution-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}_managed.zip
-        solution-type: Managed
+        solution-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}.zip
+        solution-type: Unmanaged
 
-    - name: Import solution to prod env
+    - name: Import solution as unmanaged to build env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{env.PP_BUILD_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{env.TENANT_ID}}
+        solution-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}.zip
+        force-overwrite: true
+        publish-changes: true
+        
+    - name: Export solution as managed
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{env.PP_BUILD_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.envSecret }} 
+        tenant-id: ${{env.TENANT_ID}}
+        solution-name: ${{ inputs.solution_name }}
+        managed: true
+        solution-output-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}_managed.zip
+
+    - name: Import solution to destination env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{inputs.destination_environment_url}}
