@@ -58,7 +58,7 @@ jobs:
       with:
         environment-url: ${{env.PP_BUILD_URL}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
         solution-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
@@ -69,7 +69,7 @@ jobs:
       with:
         environment-url: ${{env.PP_BUILD_URL}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }} 
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ inputs.solution_name }}
         managed: true
@@ -80,7 +80,7 @@ jobs:
       with:
         environment-url: ${{inputs.destination_environment_url}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
         solution-file: ${{ env.SOLUTION_FOLDER}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
