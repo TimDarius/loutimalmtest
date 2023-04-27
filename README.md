@@ -9,6 +9,7 @@ The following Power Platforms are used as part of this project.
 |---------|:---------------------------:|
 | DEV | Main development environment will all work is performed on the solution |
 | BUILD | Build environment that is used by GitHub actions for building solution  |
+| TEST | Test environment that is used by GitHub actions |
 | HOTFIX| Special hotfix environment to be used for working on hotfixes and keeping dev work isolated from hotfixes |
 | PROD|  Production environment that will host the final solution for production use|
 
