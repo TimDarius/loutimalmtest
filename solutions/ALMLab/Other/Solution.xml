@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.23031.182" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.23033.224" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>ALMLab</UniqueName>
     <LocalizedNames>
@@ -82,6 +82,8 @@
       <RootComponent type="61" schemaName="user9_/scripts/RequestedTimeOff" behavior="0" />
       <RootComponent type="62" schemaName="user9_TimeOffRequest" behavior="0" />
       <RootComponent type="80" schemaName="user9_TimeOffRequest" behavior="0" />
+      <RootComponent type="91" id="{dfa2eab9-17c7-4fe7-be38-f722ea53aa8c}" schemaName="USDAALMTimeOff, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6b8a928a6b32759f" behavior="0" />
+      <RootComponent type="92" id="{fd9b55b1-5fe4-ed11-a7c6-001dd80706ea}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="USDAALMTimeOff.TimeOffPlugin: Create of user9_timeoffrequest" SdkMessageProcessingStepId="{fd9b55b1-5fe4-ed11-a7c6-001dd80706ea}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>9ebdbb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>USDAALMTimeOff.TimeOffPlugin, USDAALMTimeOff, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6b8a928a6b32759f</PluginTypeName>
+  <PluginTypeId>067970b9-44e7-4640-9d67-64f6f116b1c0</PluginTypeId>
+  <PrimaryEntity>user9_timeoffrequest</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <Description>USDAALMTimeOff.TimeOffPlugin: Create of user9_timeoffrequest</Description>
+  <FilteringAttributes></FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>40</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages />
+</SdkMessageProcessingStep>
