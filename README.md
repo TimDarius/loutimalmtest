@@ -9,6 +9,7 @@ The following Power Platforms are used as part of this project.
 |---------|:---------------------------:|
 | DEV | Main development environment will all work is performed on the solution |
 | BUILD | Build environment that is used by GitHub actions for building solution  |
+| TEST | Test environment that is used by GitHub actions |
 | HOTFIX| Special hotfix environment to be used for working on hotfixes and keeping dev work isolated from hotfixes |
 | PROD|  Production environment that will host the final solution for production use|
 
@@ -23,9 +24,16 @@ The following Power Platforms are used as part of this project.
 | TENANT_ID | The Tenant ID for the Tenant hosting the Power Platform solution |
 | ENVIRONMENT_URL | The URL for the Power Platform environment |
 | BUILD_ENVIRONMENT_URL | The URL for the Power Platform Build environment |
+| TEST_ENVIRONMENT_URL | The URL for the Power Platform Test environment |
 | PRODUCTION_ENVIRONMENT_URL | The URL for the Power Platform Production environmnet | 
 | PowerPlatformSPN | The Secret for the Client ID that has been registered for Power Platform. This is stored in secrets on GitHub |
 | GITHUB_TOKEN | 
+
+### Create App Registration in Azure for Dataverse (Power Platform)
+Within Azure, create an App Registration with API access to Dataverse.
+
+### Store App Registration Secret in GitHub Environments
+Within GitHub, create an environment to store the App Registration Secret. In GitHub under Environments you can store secrets (secure information) so that it will be available but is secured.
 
 ### backfill-main-to-dev.yml
 Export solution from DEV as unmanaged, upload export solution to GitHub artifact store, pack solution as unmanaged and deploy to dev/hotfix
